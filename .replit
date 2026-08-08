@@ -1,0 +1,25 @@
+run = "python app.py"
+modules = ["python-3.10:v18-20230608-322e88b"]
+
+[nix]
+channel = "stable-23_05"
+
+[unitTest]
+language = "python3"
+
+[languages.python3]
+pattern = "**/*.py"
+
+[languages.python3.linter]
+args = ["--format=json", "--quiet", "--"]
+
+[debugger]
+support = true
+
+[debugger.interactive]
+transport = "localhost:0"
+startCommand = ["dap-python", "main.py"]
+
+[[ports]]
+localPort = 5000
+externalPort = 80
