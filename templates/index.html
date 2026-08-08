@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Аршонадзор (АКН)</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <div class="logo-icon">
+                    <div class="logo-green"></div>
+                    <div class="logo-red"></div>
+                </div>
+                <div>
+                    <h1>АРШОНАДЗОР</h1>
+                    <p>Федеральная служба по надзору в сфере...</p>
+                </div>
+            </div>
+            <nav>
+                <a href="/admin">Вход для сотрудников</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="news-list">
+            <h2>Официальные новости и реестры</h2>
+            {% if news %}
+                <div class="grid">
+                {% for item in news %}
+                    <article class="news-card">
+                        <div class="news-date">{{ item.date_created }}</div>
+                        <h3>{{ item.title }}</h3>
+                        <p>{{ item.content }}</p>
+                    </article>
+                {% endfor %}
+                </div>
+            {% else %}
+                <p>Новостей пока нет.</p>
+            {% endif %}
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Аршонадзор. Все права защищены.</p>
+        </div>
+    </footer>
+</body>
+</html>

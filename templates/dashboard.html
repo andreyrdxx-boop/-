@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Панель Управления - Аршонадзор</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <div class="logo-icon">
+                    <div class="logo-green"></div>
+                    <div class="logo-red"></div>
+                </div>
+                <h1>Панель Управления АКН</h1>
+            </div>
+            <nav>
+                <a href="/">На сайт</a>
+                <a href="/logout">Выйти</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="admin-panel">
+            <h2>Добавить новость</h2>
+            <form method="POST" class="add-news-form">
+                <input type="text" name="title" placeholder="Заголовок новости" required>
+                <textarea name="content" rows="6" placeholder="Текст новости..." required></textarea>
+                <button type="submit">Опубликовать</button>
+            </form>
+        </section>
+
+        <section class="news-list admin-list">
+            <h2>Управление новостями</h2>
+            {% for item in news %}
+                <div class="admin-news-item">
+                    <div>
+                        <h3>{{ item.title }}</h3>
+                        <small>{{ item.date_created }}</small>
+                    </div>
+                    <a href="/delete/{{ item.id }}" class="btn-delete" onclick="return confirm('Удалить?')">Удалить</a>
+                </div>
+            {% else %}
+                <p>Нет опубликованных новостей.</p>
+            {% endfor %}
+        </section>
+    </main>
+</body>
+</html>

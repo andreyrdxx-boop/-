@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вход - Аршонадзор</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="admin-body">
+    <div class="login-container">
+        <div class="logo-icon" style="justify-content: center; margin-bottom: 20px;">
+            <div class="logo-green"></div>
+            <div class="logo-red"></div>
+        </div>
+        <h2>Служебный Вход</h2>
+        {% if error %}
+            <p class="error">{{ error }}</p>
+        {% endif %}
+        <form method="POST">
+            <input type="password" name="password" placeholder="Пароль" required>
+            <button type="submit">Войти</button>
+        </form>
+        <a href="/" style="display: block; margin-top: 15px; color: #6c757d; text-decoration: none;">Вернуться на главную</a>
+    </div>
+</body>
+</html>
